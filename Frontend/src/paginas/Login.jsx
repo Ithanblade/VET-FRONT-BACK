@@ -24,7 +24,7 @@ const Login = () => {
 
                         <div className="mb-3">
                             <label className="mb-2 block text-sm font-semibold">Password</label>
-                            <input type="email" placeholder="********************" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-2 text-gray-500" />
+                            <input type="password" placeholder="********************" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-2 text-gray-500" />
                         </div>
 
                         <div className="my-4">

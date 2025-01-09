@@ -13,6 +13,7 @@ import Crear from './paginas/Crear'
 import Actualizar from './paginas/Actualizar'
 import Perfil from './paginas/Perfil'
 import { Confirmar } from './paginas/Confirmar'
+import Restablecer from './paginas/Restablecer'
 
 
 
@@ -29,7 +30,8 @@ function App() {
           <Route path='register' element={<Register/>}/>
           <Route path='forgot/:id' element={<Forgot/>}/>
           <Route path='confirmar/:token' element={<Confirmar/>}/>
-          <Route path='*' element={<NotFound />} />
+          <Route path='confirmar/:token' element={<Confirmar/>}/>
+          <Route path='recuperar-password/:token' element={<Restablecer />} />
         </Route>
 
         <Route path='/dashboard' element={<Dashboard/>}>

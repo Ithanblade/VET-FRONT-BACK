@@ -1,41 +1,99 @@
-import {Link} from 'react-router-dom'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+
+import axios from 'axios';
+import Mensaje from '../componets/Alertas/Mensajes'
 
 export const Register = () => {
+
+
+    // paso 1 
+    const [form, setform] = useState({
+        nombre: "",
+        apellido: "",
+        direccion: "",
+        telefono: "",
+        email: "",
+        password: ""
+    })
+    
+    // paso 2
+    const handleChange = (e) => {
+        setform({...form,
+            [e.target.name]:e.target.value
+        })
+    }
+
+    // paso 3
+
+    const [mensaje, setMensaje] = useState({})
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(form); // Log the form data to see if it's correctly populated
+        try {
+          const url =  `${import.meta.env.VITE_BACKEND_URL}/registro`;
+          const respuesta = await axios.post(url, form);
+          setMensaje({ respuesta: respuesta.data.msg, tipo: true });
+          setform({});
+        } catch (error) {
+          console.log(error.response); // Log the entire error response for debugging
+          setMensaje({ respuesta: error.response.data.msg, tipo: false });
+        }
+      };
+
+
     return (
         <>
             <div className="bg-white flex justify-center items-center w-1/2">
 
                 <div className="md:w-4/5 sm:w-full">
-
+                    {Object.keys(mensaje).length>0 && <Mensaje tipo={mensaje.tipo}>{mensaje.respuesta}</Mensaje>}
                     <h1 className="text-3xl font-semibold mb-2 text-center uppercase  text-gray-500">Welcome</h1>
                     <small className="text-gray-400 block my-4 text-sm">Please enter your details</small>
 
 
-                    <form >
-
+                    <form onSubmit={handleSubmit}>
                         <div className="mb-3">
-                            <label className="mb-2 block text-sm font-semibold">Name</label>
-                            <input type="name" placeholder="Enter you name" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" />
+                            <label className="mb-2 block text-sm font-semibold" htmlFor="nombre">Nombre:</label>
+                            <input type="text" id="nombre" name='nombre'
+                                value={form.nombre || ""} onChange={handleChange}
+                                placeholder="Ingresa tu nombre" className="block w-full rounded-md border border-gray-300 focus:border-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-700 py-1 px-1.5 text-gray-500" required />
                         </div>
 
                         <div className="mb-3">
-                            <label className="mb-2 block text-sm font-semibold">Lastname</label>
-                            <input type="name" placeholder="Enter you lastname" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" />
+                            <label className="mb-2 block text-sm font-semibold" htmlFor="apellido">Apellido:</label>
+                            <input type="text" id="apellido" name='apellido'
+                                value={form.apellido || ""} onChange={handleChange}
+                                placeholder="Ingresa tu apellido" className="block w-full rounded-md border border-gray-300 focus:border-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-700 py-1 px-1.5 text-gray-500" required />
                         </div>
 
                         <div className="mb-3">
-                            <label className="mb-2 block text-sm font-semibold">Address</label>
-                            <input type="address" placeholder="Enter you address" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" />
+                            <label className="mb-2 block text-sm font-semibold" htmlFor="direccion">Dirección</label>
+                            <input type="text" id="direccion" name='direccion'
+                                value={form.direccion || ""} onChange={handleChange}
+                                placeholder="Ingresa tu dirección" className="block w-full rounded-md border border-gray-300 focus:border-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-700 py-1 px-1.5 text-gray-500" required />
                         </div>
 
                         <div className="mb-3">
-                            <label className="mb-2 block text-sm font-semibold">Email</label>
-                            <input type="lastname" placeholder="Enter you email" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" />
+                            <label className="mb-2 block text-sm font-semibold" htmlFor="telefono">Teléfono:</label>
+                            <input type="tel" id="telefono" name='telefono'
+                                value={form.telefono || ""} onChange={handleChange}
+                                placeholder="Ingresa tu teléfono" className="block w-full rounded-md border border-gray-300 focus:border-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-700 py-1 px-1.5 text-gray-500" required />
                         </div>
 
                         <div className="mb-3">
-                            <label className="mb-2 block text-sm font-semibold">Password</label>
-                            <input type="email" placeholder="********************" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" />
+                            <label className="mb-2 block text-sm font-semibold" htmlFor="email">Email:</label>
+                            <input type="email" id="email" name='email'
+                                value={form.email || ""} onChange={handleChange}
+                                placeholder="Ingresa tu email" className="block w-full rounded-md border border-gray-300 focus:border-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-700 py-1 px-1.5 text-gray-500" required />
+                        </div>
+
+                        <div className="mb-3">
+                            <label className="mb-2 block text-sm font-semibold" htmlFor="password">Contraseña:</label>
+                            <input type="password" id="password" name='password'
+                                value={form.password || ""} onChange={handleChange}
+                                placeholder="********************" className="block w-full rounded-md border border-gray-300 focus:border-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-700 py-1 px-1.5 text-gray-500" required />
                         </div>
 
                         <div className="mb-3">
