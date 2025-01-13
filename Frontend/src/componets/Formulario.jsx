@@ -176,6 +176,10 @@ export const Formulario = ({paciente}) => {
                     hover:bg-gray-900 cursor-pointer transition-all'
                     value={paciente?._id ? 'Actualizar paciente' : 'Registrar paciente'} />
 
+            <button className=" bg-gray-600 w-full p-3 
+                    text-slate-300 uppercase font-bold rounded-lg 
+                    hover:bg-gray-900 cursor-pointer transition-al mt-4" onClick={() => navigate(`/dashboard/listar`)}>Regresar</button>
+
         </form>
     )
 }
