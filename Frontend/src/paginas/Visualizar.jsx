@@ -85,7 +85,7 @@ const Visualizar = () => {
                             </div>
                             <hr className='my-4' />
                             <button className=" text-white mr-3 text-md block hover:bg-red-900 text-center
-                        bg-gray-800 px-4 py-1 rounded-lg ml-3" onClick={() => navigate(`/dashboard/listar`)}>Regresar</button>
+                             bg-gray-800 px-4 py-1 rounded-lg ml-3" onClick={() => navigate(`/dashboard/listar`)}>Regresar</button>
 
                             </>
                         )
