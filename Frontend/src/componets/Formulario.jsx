@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import Mensaje from "./Alertas/Mensaje";
 
-export const Formulario = (paciente) => {
+export const Formulario = ({paciente}) => {
 
     const navigate = useNavigate()
     const [mensaje, setMensaje] = useState({})
