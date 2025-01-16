@@ -9,7 +9,7 @@ export const CardPerfil = () => {
                         flex flex-col items-center justify-between shadow-xl rounded-lg">
 
             <div>
-                <img src="https://cdn-icons-png.flaticon.com/512/4715/4715329.png" alt="img-client" className="m-auto " width={120} height={120} />
+                <img src="https://i.gifer.com/XOsX.gif" alt="img-client" className="m-auto " width={120} height={120} />
             </div>
             <div className="self-start">
                 <b>Nombre:</b><p className="inline-block ml-3">{auth.nombre}</p>

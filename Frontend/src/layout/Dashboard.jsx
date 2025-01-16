@@ -18,7 +18,7 @@ const Dashboard = () => {
 
                 <h2 className='text-4xl font-black text-center text-slate-200'>ADMIN VETERINARIA</h2>
 
-                <img src="https://cdn-icons-png.flaticon.com/512/2138/2138508.png" alt="img-client" className="m-auto mt-8 p-1 border-2 border-slate-500 rounded-full" width={120} height={120} />
+                <img src="https://i.gifer.com/6X9W.gif" alt="img-client" className="m-auto mt-8 p-1 border-2 border-slate-500 rounded-full" width={120} height={120} />
                 <p className='text-slate-400 text-center my-4 text-sm'> <span className='bg-green-600 w-3 h-3 inline-block rounded-full'></span> Bienvenido - {auth?.nombre}</p>
                 <hr className="mt-5 border-slate-500" />
 
@@ -45,7 +45,7 @@ const Dashboard = () => {
                         Usuario - {auth?.nombre}
                     </div>
                     <div>
-                        <img src="https://cdn-icons-png.flaticon.com/512/4715/4715329.png" alt="img-client" className="border-2 border-green-600 rounded-full" width={50} height={50} />
+                        <img src="https://i.gifer.com/XOsX.gif" alt="img-client" className="border-2 border-green-600 rounded-full" width={50} height={50} />
                     </div>
                     <div>
                         <Link to='/' className=" text-white mr-3 text-md block hover:bg-red-900 text-center

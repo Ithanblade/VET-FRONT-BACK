@@ -80,7 +80,7 @@ const Visualizar = () => {
                                     </p>
                                 </div>
                                 <div>
-                                    <img src="https://cdn-icons-png.flaticon.com/512/2138/2138440.png" alt="dogandcat" className='h-80 w-80' />
+                                    <img src="https://i.gifer.com/4XXZ.gif" alt="dogandcat" className='h-80 w-80' />
                                 </div>
                             </div>
                             <hr className='my-4' />
