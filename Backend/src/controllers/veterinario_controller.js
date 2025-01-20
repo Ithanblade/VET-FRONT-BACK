@@ -35,7 +35,8 @@ const login = async(req,res)=>{
         direccion,
         telefono,
         _id,
-        email:veterinarioBDD.email
+        email:veterinarioBDD.email,
+        rol:"veterinario",
     })
 }
 
@@ -44,12 +45,17 @@ const login = async(req,res)=>{
 
 // Método para mostrar el perfil 
 const perfil =(req,res)=>{
-    delete req.veterinarioBDD.token
-    delete req.veterinarioBDD.confirmEmail
-    delete req.veterinarioBDD.createdAt
-    delete req.veterinarioBDD.updatedAt
-    delete req.veterinarioBDD.__v
-    res.status(200).json(req.veterinarioBDD)
+    const {nombre,apellido,direccion,telefono,_id,email} = req.veterinarioBDD
+    
+    res.status(200).json({
+        nombre,
+        apellido,
+        direccion,
+        telefono,
+        _id,
+        email,
+        rol:"veterinario",
+    })
 }
 
 

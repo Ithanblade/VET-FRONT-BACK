@@ -1,15 +1,21 @@
 import axios from "axios"
 import { createContext, useEffect, useState } from "react"
+import jwt from 'jsonwebtoken'
 
 const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({})
-
+    console.warn(auth)
+    
     const perfil = async(token) => {
+        const {rol} = jwt.verify(authorization.split(' ')[1],process.env.JWT_SECRET)
+        const url = rol=="paciente"
+            ? `${import.meta.env.VITE_BACKEND_URL}/paciente/perfil`
+            : `${import.meta.env.VITE_BACKEND_URL}/perfil`
+        
         try {
-            const url = `${import.meta.env.VITE_BACKEND_URL}/perfil`
-            const options={
+            const options={ 
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`

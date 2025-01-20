@@ -38,7 +38,8 @@ const loginPaciente = async(req,res)=>{
         emailP,
         celular,
         convencional,
-        _id
+        _id,
+        rol:"paciente",
     })
 }
 
@@ -48,15 +49,17 @@ const loginPaciente = async(req,res)=>{
 
 // Método para ver el perfil 
 const perfilPaciente =(req,res)=>{
-    delete req.pacienteBDD.ingreso
-    delete req.pacienteBDD.sintomas
-    delete req.pacienteBDD.salida
-    delete req.pacienteBDD.estado
-    delete req.pacienteBDD.veterinario
-    delete req.pacienteBDD.createdAt
-    delete req.pacienteBDD.updatedAt
-    delete req.pacienteBDD.__v
-    res.status(200).json(req.pacienteBDD)
+	const {nombre,propietario,email:emailP,celular,convencional,_id} = req.pacienteBDD
+
+    res.status(200).json({
+        nombre,
+        propietario,
+        emailP,
+        celular,
+        convencional,
+        _id,
+        rol:"paciente",
+    })
 }
 
 
@@ -64,15 +67,15 @@ const perfilPaciente =(req,res)=>{
 
 
 
-// Método para listar todos los pacientes
 const listarPacientes = async (req,res)=>{
-    // Obtener todos los pacientes que se enceuntren activos
-    // Que sean solo los del paciente que inicie sesión
-    // Quitar campos no necesarios 
-    // Mostrar campos de documentos relacionados
-    const pacientes = await Paciente.find({estado:true}).where('veterinario').equals(req.veterinarioBDD).select("-salida -createdAt -updatedAt -__v").populate('veterinario','_id nombre apellido')
-    // Respuesta 
-    res.status(200).json(pacientes)
+    if (req.pacienteBDD && "propietario" in req.pacienteBDD){
+        const pacientes = await Paciente.find(req.pacienteBDD._id).select("-salida -createdAt -updatedAt -__v").populate('veterinario','_id nombre apellido')
+        res.status(200).json(pacientes)
+    }
+    else{
+        const pacientes = await Paciente.find({estado:true}).where('veterinario').equals(req.veterinarioBDD).select("-salida -createdAt -updatedAt -__v").populate('veterinario','_id nombre apellido')
+        res.status(200).json(pacientes)
+    }
 }
 
 

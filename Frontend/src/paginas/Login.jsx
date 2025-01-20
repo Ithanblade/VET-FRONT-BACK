@@ -25,8 +25,10 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        const url = form.password.includes("vet")
+            ? `${import.meta.env.VITE_BACKEND_URL}/paciente/login`
+            : `${import.meta.env.VITE_BACKEND_URL}/login`
         try {
-            const url = `${import.meta.env.VITE_BACKEND_URL}/login`
             const respuesta = await axios.post(url, form)
             localStorage.setItem('token', respuesta.data.token)
             setAuth(respuesta.data)
@@ -42,7 +44,7 @@ const Login = () => {
 
     return (
         <>
-            <ToastContainer/>
+            <ToastContainer />
             <div className="w-1/2 h-screen bg-[url('/public/images/doglogin.jpg')] 
             bg-no-repeat bg-cover bg-center sm:block hidden
             ">
@@ -75,7 +77,7 @@ const Login = () => {
 
                         <div className="my-4">
                             <button className="py-2 w-full block text-center bg-gray-500 text-slate-300 border rounded-xl hover:scale-100 duration-300 hover:bg-gray-900 hover:text-white">Login</button>
-                        </div>  
+                        </div>
 
                     </form>
 
